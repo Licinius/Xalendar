@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xalendar.Views.ItemDetailPage"
+             Title="{Binding Title}">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{Binding Item.Title, StringFormat='Title : {0}'}" FontSize="Medium"/>
+        <Label Text="{Binding Item.Date, StringFormat='{}{0:MM/dd/yy HH:mm}'}" FontSize="Medium"/>
+        <Label Text="Description:" FontSize="Medium" />
+        <Label Text="{Binding Item.Description}" FontSize="Medium"/>
+    </StackLayout>
+</ContentPage>
