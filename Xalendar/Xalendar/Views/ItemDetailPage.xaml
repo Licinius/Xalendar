@@ -5,8 +5,9 @@
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding Item.Title, StringFormat='Title : {0}'}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Date, StringFormat='{}{0:MM/dd/yy HH:mm}'}" FontSize="Medium"/>
+        <Label Text="{Binding Item.Date, StringFormat='{}{0:dd/MM/yy HH:mm}'}" FontSize="Medium"/>
         <Label Text="Description:" FontSize="Medium" />
+        <Label Text="{Binding Item.TypeEvt, StringFormat='Type : {0}'}" FontSize="Medium"/>
         <Label Text="{Binding Item.Description}" FontSize="Medium"/>
     </StackLayout>
 </ContentPage>

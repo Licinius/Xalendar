@@ -12,7 +12,9 @@ namespace Xalendar.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Event> DataStore => DependencyService.Get<IDataStore<Event>>() ?? new MockDataStore();
+#pragma warning disable CS0246 // Le nom de type ou d'espace de noms 'MockDataStore' est introuvable (vous manque-t-il une directive using ou une référence d'assembly ?)
+        public IDataStore<Event> DataStore => DependencyService.Get<IDataStore<Event>>() ?? EventDatabase.Database;
+#pragma warning restore CS0246 // Le nom de type ou d'espace de noms 'MockDataStore' est introuvable (vous manque-t-il une directive using ou une référence d'assembly ?)
 
         bool isBusy = false;
         public bool IsBusy

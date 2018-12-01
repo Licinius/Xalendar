@@ -1,5 +1,5 @@
 ﻿using System;
-
+using SQLite;
 namespace Xalendar.Models
 {
     public enum TypeEvent
@@ -8,7 +8,8 @@ namespace Xalendar.Models
     }
     public class Event
     {
-        public String Id { get; set; }
+        [PrimaryKey,AutoIncrement]
+        public int Id { get; set; }
         public String Title { get; set; }
         public DateTime Date { get; set; }
         public TypeEvent TypeEvt { get; set; }

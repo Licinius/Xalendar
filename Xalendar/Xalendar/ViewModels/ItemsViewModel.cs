@@ -38,10 +38,12 @@ namespace Xalendar.ViewModels
 
             try
             {
+                Console.Write("Lol");
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
+                    Console.Write("Lol");
                     Items.Add(item);
                 }
             }
