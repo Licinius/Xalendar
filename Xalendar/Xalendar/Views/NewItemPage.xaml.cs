@@ -35,7 +35,8 @@ namespace Xalendar.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds, Date.Kind);
+            Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds);
+            Console.Write(Item.Date);
             MessagingCenter.Send(this, "AddItem", Item);
             await Navigation.PopModalAsync();
         }

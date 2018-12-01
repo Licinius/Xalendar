@@ -13,7 +13,7 @@
                 <Entry Text="{Binding Item.Title}" FontSize="Small" Margin="5"/>
                 <Label Text="When" FontSize="Medium" />
                 <StackLayout Orientation="Horizontal"  Margin="5">
-                    <DatePicker MinimumDate="{Binding Date}" HorizontalOptions="FillAndExpand"/>
+                    <DatePicker MinimumDate="{Binding Date}" Date="{Binding Date}" HorizontalOptions="FillAndExpand"/>
                     <TimePicker Time="{Binding Time}" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
                 <Label Text="What " FontSize="Medium" />
