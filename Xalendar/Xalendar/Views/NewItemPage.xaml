@@ -7,19 +7,20 @@
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Spacing="10" Padding="15">
-            <Label Text="Title" FontSize="Medium" />
-            <Entry Text="{Binding Item.Title}" FontSize="Small" Margin="5"/>
-            <Label Text="When" FontSize="Medium" />
-            <StackLayout Orientation="Horizontal"  Margin="5">
-                <DatePicker MinimumDate="{Binding Date}" HorizontalOptions="FillAndExpand"/>
-                <TimePicker Time="{Binding Time}" HorizontalOptions="FillAndExpand"/>
+        <ScrollView>
+            <StackLayout Spacing="10" Padding="15">
+                <Label Text="Title" FontSize="Medium" />
+                <Entry Text="{Binding Item.Title}" FontSize="Small" Margin="5"/>
+                <Label Text="When" FontSize="Medium" />
+                <StackLayout Orientation="Horizontal"  Margin="5">
+                    <DatePicker MinimumDate="{Binding Date}" HorizontalOptions="FillAndExpand"/>
+                    <TimePicker Time="{Binding Time}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <Label Text="What " FontSize="Medium" />
+                <Picker ItemsSource ="{Binding TypesEvent}" SelectedIndex="{Binding Item.TypeEvt}" Margin="5"/>
+                <Label Text="Any Information" FontSize="Medium" />
+                <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="5"  AutoSize="TextChanges"/>
             </StackLayout>
-            <Label Text="What " FontSize="Medium" />
-            <Picker ItemsSource ="{Binding TypesEvent}" SelectedIndex="{Binding Item.TypeEvt}" Margin="5"/>
-            <Label Text="Any Information" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="5"  AutoSize="TextChanges"/>
-
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
