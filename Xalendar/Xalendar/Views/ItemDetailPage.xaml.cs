@@ -26,8 +26,8 @@ namespace Xalendar.Views
 
             var item = new Event
             {
-                Title = "Item 1",
-                Description = "This is an item description."
+                Title = "I AM ERROR",
+                Description = "GO AWAY !"
             };
 
             viewModel = new ItemDetailViewModel(item);

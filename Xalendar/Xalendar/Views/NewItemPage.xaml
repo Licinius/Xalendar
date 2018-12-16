@@ -20,6 +20,7 @@
                 <Picker ItemsSource ="{Binding TypesEvent}" SelectedIndex="{Binding Item.TypeEvt}" Margin="5"/>
                 <Label Text="Any Information" FontSize="Medium" />
                 <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="5"  AutoSize="TextChanges"/>
+                <Button Text="Click on me to know your location" Clicked="Geolocate"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
