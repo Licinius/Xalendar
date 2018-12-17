@@ -10,5 +10,6 @@
         <Label Text="{Binding Item.Longitude, StringFormat='Longitude : {0:F3}' }" FontSize="Medium"/>
         <Label Text="{Binding Item.TypeEvt, StringFormat='Type : {0}'}" FontSize="Medium"/>
         <Label Text="{Binding Item.Description, StringFormat='Note: {0}'}" FontSize="Medium"/>
+        <Image x:Name="PhotoImage"/>
     </StackLayout>
 </ContentPage>

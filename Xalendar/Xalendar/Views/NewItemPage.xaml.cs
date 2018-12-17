@@ -9,6 +9,7 @@ using Xalendar.Services;
 using Plugin.Permissions.Abstractions;
 using System.Diagnostics;
 using Plugin.Media;
+using System.IO;
 
 namespace Xalendar.Views
 {
@@ -35,6 +36,7 @@ namespace Xalendar.Views
 
             BindingContext = this;
         }
+
         async void Take_Picture(object sender, EventArgs e)
         {
             if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
@@ -42,14 +44,19 @@ namespace Xalendar.Views
                 // Supply media options for saving our photo after it's taken.
                 var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
-                    Directory = "Receipts",
+                    Directory = "Events",
                     Name = $"{DateTime.UtcNow}.jpg"
                 };
 
                 // Take a photo of the business receipt.
                 var file = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
+                if (file != null)
+                {
+                    Item.Photo = Utils.ReadStream(file.GetStream());
+                }
+                PhotoImage.Source = ImageSource.FromStream(() => { return new MemoryStream(Item.Photo); });
             }
-            
+
         }
         async void Save_Clicked(object sender, EventArgs e)
         {

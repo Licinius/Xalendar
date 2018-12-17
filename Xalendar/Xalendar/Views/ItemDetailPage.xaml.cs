@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 using Xalendar.Models;
 using Xalendar.ViewModels;
+using System.IO;
 
 namespace Xalendar.Views
 {
@@ -18,6 +19,7 @@ namespace Xalendar.Views
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
+            PhotoImage.Source = ImageSource.FromStream(() => { return new MemoryStream(viewModel.Item.Photo); });
         }
 
         public ItemDetailPage()
