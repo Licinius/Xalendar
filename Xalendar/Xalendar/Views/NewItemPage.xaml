@@ -4,6 +4,7 @@
              x:Class="Xalendar.Views.NewItemPage"
              Title="New Event">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Picture" Clicked="Take_Picture" />
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

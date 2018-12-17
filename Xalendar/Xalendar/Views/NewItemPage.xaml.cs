@@ -8,6 +8,7 @@ using Plugin.Geolocator;
 using Xalendar.Services;
 using Plugin.Permissions.Abstractions;
 using System.Diagnostics;
+using Plugin.Media;
 
 namespace Xalendar.Views
 {
@@ -34,7 +35,22 @@ namespace Xalendar.Views
 
             BindingContext = this;
         }
+        async void Take_Picture(object sender, EventArgs e)
+        {
+            if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+            {
+                // Supply media options for saving our photo after it's taken.
+                var mediaOptions = new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    Directory = "Receipts",
+                    Name = $"{DateTime.UtcNow}.jpg"
+                };
 
+                // Take a photo of the business receipt.
+                var file = await CrossMedia.Current.TakePhotoAsync(mediaOptions);
+            }
+            
+        }
         async void Save_Clicked(object sender, EventArgs e)
         {
             Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds);
