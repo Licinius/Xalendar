@@ -15,8 +15,13 @@ namespace Xalendar.ViewModels
         public ObservableCollection<Event> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
+        public Array TypesEvent { get; set; }
+        public DateTime Date { get; set; }
         public ItemsViewModel()
         {
+
+            Date = DateTime.Now;
+            TypesEvent = Enum.GetValues(typeof(TypeEvent));
             Title = "Event";
             Items = new ObservableCollection<Event>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -29,6 +34,31 @@ namespace Xalendar.ViewModels
             });
         }
 
+        async internal void Search(DateTime date, TypeEvent? selectedItem)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            try
+            {
+                var items = await DataStore.SearchAsync(date, selectedItem);
+                Items.Clear();
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -38,12 +68,10 @@ namespace Xalendar.ViewModels
 
             try
             {
-                Console.Write("Lol");
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
-                    Console.Write("Lol");
                     Items.Add(item);
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xalendar.Models;
 
 namespace Xalendar.Services
 {
@@ -11,5 +12,6 @@ namespace Xalendar.Services
         Task<int> DeleteItemAsync(string id);
         Task<T> GetItemAsync(string id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> SearchAsync(DateTime date,TypeEvent? type);
     }
 }

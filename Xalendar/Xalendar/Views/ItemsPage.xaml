@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lb="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              x:Class="Xalendar.Views.ItemsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
@@ -15,6 +16,9 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <DatePicker x:Name="DatePicker"  Date="{Binding Date}" HorizontalOptions="FillAndExpand"/>
+            <Picker x:Name="Picker" ItemsSource ="{Binding TypesEvent}" Margin="5"/>
+            <Button Text="Search" Clicked="Search"></Button>
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"

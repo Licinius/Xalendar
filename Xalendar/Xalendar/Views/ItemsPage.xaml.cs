@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using Xalendar.Models;
 using Xalendar.Views;
 using Xalendar.ViewModels;
+using XLabs.Forms.Behaviors;
 
 namespace Xalendar.Views
 {
@@ -17,14 +18,22 @@ namespace Xalendar.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel viewModel;
-
+        RelayGesture reset { get; set; }
+          
         public ItemsPage()
         {
             InitializeComponent();
-
+            reset = new RelayGesture((x,y) => { Picker.SelectedItem = null; });
             BindingContext = viewModel = new ItemsViewModel();
         }
 
+        async void Search(object sender,EventArgs e)
+        {
+            if (Picker.SelectedItem != null)
+                viewModel.Search(DatePicker.Date, (TypeEvent)Picker.SelectedItem);
+            else
+                viewModel.Search(DatePicker.Date,null);
+        }
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as Event;

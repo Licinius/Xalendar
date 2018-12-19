@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,28 @@ namespace Xalendar.Services
         public async Task<Event> GetItemAsync(string id)
         {
             return await Database.GetAsync<Event>(id);
+        }
+
+        public async Task<IEnumerable<Event>> SearchAsync(DateTime date, TypeEvent? type)
+        {
+            if (type != null)
+            {
+                var events= from e in Database.Table<Event>()
+                             where e.Date > date
+                             where e.TypeEvt == type
+                             select e;
+                return await events.ToListAsync();
+            }
+            else
+            {
+               var events = from e in Database.Table<Event>()
+                             where e.Date > date
+                             select e;
+                return await events.ToListAsync();
+            }
+  
+         
+            
         }
 
         public async Task<IEnumerable<Event>> GetItemsAsync(bool forceRefresh = false)
