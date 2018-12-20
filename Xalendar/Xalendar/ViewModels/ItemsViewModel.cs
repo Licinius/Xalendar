@@ -19,7 +19,6 @@ namespace Xalendar.ViewModels
         public DateTime Date { get; set; }
         public ItemsViewModel()
         {
-
             Date = DateTime.Now;
             TypesEvent = Enum.GetValues(typeof(TypeEvent));
             Title = "Event";

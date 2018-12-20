@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using Xamarin.Forms;
 
 namespace Xalendar.Droid
 {

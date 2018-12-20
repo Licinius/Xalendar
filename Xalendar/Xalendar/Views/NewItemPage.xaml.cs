@@ -10,6 +10,8 @@ using Plugin.Permissions.Abstractions;
 using System.Diagnostics;
 using Plugin.Media;
 using System.IO;
+using Plugin.LocalNotifications;
+using Xamarin.Essentials;
 
 namespace Xalendar.Views
 {
@@ -62,6 +64,8 @@ namespace Xalendar.Views
         {
             Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds);
             MessagingCenter.Send(this, "AddItem", Item);
+            if(Preferences.Get(Item.TypeEvt.ToString(),false))
+                CrossLocalNotifications.Current.Show(Item.Title,Item.TypeEvt + " ["+Item.Date.ToString("dd/MM/yyyy")+"]", 101,Item.Date);
             await Navigation.PopModalAsync();
         }
 

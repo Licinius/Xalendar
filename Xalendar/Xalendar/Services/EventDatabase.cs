@@ -73,10 +73,7 @@ namespace Xalendar.Services
                              where e.Date > date
                              select e;
                 return await events.ToListAsync();
-            }
-  
-         
-            
+            }   
         }
 
         public async Task<IEnumerable<Event>> GetItemsAsync(bool forceRefresh = false)
