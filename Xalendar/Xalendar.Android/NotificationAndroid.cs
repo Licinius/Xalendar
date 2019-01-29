@@ -46,6 +46,8 @@ namespace Xalendar.Droid
             {
                 Console.WriteLine(notification.TypeEvent);
                 var builder = new NotificationCompat.Builder(Android.App.Application.Context, "1")
+                    .SetAutoCancel(true)
+                    .SetVibrate(new long[] { 200, 30, 200, 30, 200, 30, 500, 30, 500, 30, 500, 30, 200, 30, 200, 30, 200 })
                     .SetContentTitle(notification.Title)
                     .SetContentText(notification.Body)
                     .SetSmallIcon(Resource.Mipmap.icon);
