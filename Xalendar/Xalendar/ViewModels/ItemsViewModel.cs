@@ -24,7 +24,7 @@ namespace Xalendar.ViewModels
             Title = "Event";
             Items = new ObservableCollection<Event>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
+            //DataStore.DeleteAll();
             MessagingCenter.Subscribe<NewItemPage, Event>(this, "AddItem", async (obj, item) =>
             {
                 var newItem = item as Event;
@@ -68,7 +68,7 @@ namespace Xalendar.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.SearchAsync(DateTime.Now,null);
                 foreach (var item in items)
                 {
                     Items.Add(item);

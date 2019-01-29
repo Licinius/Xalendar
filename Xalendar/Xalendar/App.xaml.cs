@@ -9,14 +9,14 @@ namespace Xalendar
     public partial class App : Application
     {
 
-        public App()
+        public App(Boolean sport=false)
         {
             InitializeComponent();
-
-
-            MainPage = new MainPage();
+            if (!sport)
+                MainPage = new MainPage();
+            else
+                MainPage = new SportPage();
         }
-
         protected override void OnStart()
         {
             // Handle when your app starts

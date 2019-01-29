@@ -64,9 +64,13 @@ namespace Xalendar.Views
         {
             Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds);
             MessagingCenter.Send(this, "AddItem", Item);
-            if(Preferences.Get(Item.TypeEvt.ToString(),false))
-                CrossLocalNotifications.Current.Show(Item.Title,Item.TypeEvt + " ["+Item.Date.ToString("dd/MM/yyyy")+"]", 101,Item.Date);
-            await Navigation.PopModalAsync();
+            Item.TypeEvt = (TypeEvent) PickerEvent.SelectedItem;
+            INotification notification = DependencyService.Get<INotification>();
+            if(notification != null)
+            {
+                notification.Show(Item.Title, Item.TypeEvt + " [" + Item.Date.ToString("dd/MM/yyyy") + "]",Item.TypeEvt.ToString(),Item.Date);
+            }
+             await Navigation.PopModalAsync();
         }
 
         async void Geolocate(object sender, EventArgs e)
@@ -111,4 +115,6 @@ namespace Xalendar.Views
         }
 
     }
+
+
 }

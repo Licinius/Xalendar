@@ -57,6 +57,11 @@ namespace Xalendar.Services
             return await Database.GetAsync<Event>(id);
         }
 
+        public async Task<int> DeleteAll()
+        {
+            return await Database.DeleteAllAsync<Event>();
+        }
+
         public async Task<IEnumerable<Event>> SearchAsync(DateTime date, TypeEvent? type)
         {
             if (type != null)
