@@ -10,7 +10,6 @@ using Plugin.Permissions.Abstractions;
 using System.Diagnostics;
 using Plugin.Media;
 using System.IO;
-using Plugin.LocalNotifications;
 using Xamarin.Essentials;
 
 namespace Xalendar.Views

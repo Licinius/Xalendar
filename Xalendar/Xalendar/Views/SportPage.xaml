@@ -4,10 +4,15 @@
              x:Class="Xalendar.Views.SportPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Vous allez tester la lumière ! Avant d'aller dehors !"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
+            <Label Text="C'est parti pour le Sport ! "
+                HorizontalOptions="CenterAndExpand"
+                   FontSize="Medium" />
+            <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Vous avez fait " FontSize="Large" HorizontalOptions="CenterAndExpand" ></Label>
+                <Label x:Name="label" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+            <Label Text=" pas !" FontSize="Large" HorizontalOptions="CenterAndExpand" ></Label>
+            </StackLayout>
+            <Button Text="Stop !" Clicked="Stop"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
