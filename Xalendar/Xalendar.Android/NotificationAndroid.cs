@@ -22,29 +22,35 @@ namespace Xalendar.Droid
 
     class NotificationAndroid : INotification
     {
-        public void Show(string title, string text, string typeEvent, DateTime date)
+        public void Show(int id,string title, string typeEvent, DateTime date)
         {
             MyNotification myNotif = new MyNotification();
             myNotif.Title = title;
-            myNotif.Body = text;
+            myNotif.Body = typeEvent + " [" + date.ToString("dd/MM/yyyy") + "]";
             myNotif.NotifyTime = date;
             myNotif.TypeEvent = typeEvent;
+            myNotif.Id = id;
            var serializedNotification = serializeNotification(myNotif);
            
-            var intent = CreateIntent(myNotif.GetHashCode());
+            var intent = CreateIntent(id);
             intent.PutExtra(ScheduledAlarmHandler.LocalNotificationKey, serializedNotification);
-            var pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, intent, PendingIntentFlags.CancelCurrent);
+            var pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
             var triggerTime = NotifyTimeInMilliseconds(date);
             var alarmManager = GetAlarmManager();
-
             alarmManager.Set(AlarmType.RtcWakeup, triggerTime, pendingIntent);
         }
 
+        public void Cancel(int id)
+        {
+            var intent = CreateIntent(id);
+            var pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
+            GetAlarmManager().Cancel(pendingIntent);
+
+        }
         public void Show(MyNotification notification)
         {
             if(Preferences.Get(notification.TypeEvent, false))
             {
-                Console.WriteLine(notification.TypeEvent);
                 var builder = new NotificationCompat.Builder(Android.App.Application.Context, "1")
                     .SetAutoCancel(true)
                     .SetVibrate(new long[] { 200, 30, 200, 30, 200, 30, 500, 30, 500, 30, 500, 30, 200, 30, 200, 30, 200 })
@@ -55,6 +61,7 @@ namespace Xalendar.Droid
                 if (notification.TypeEvent == "Sport")
                 {
                     var intent = new Intent(Android.App.Application.Context, typeof(SportActivity));
+                    intent.PutExtra("Id", notification.Id);
                     TaskStackBuilder stackBuilder = TaskStackBuilder.Create(Android.App.Application.Context);
                     stackBuilder.AddParentStack(Java.Lang.Class.FromType (typeof(SportActivity)));
                     stackBuilder.AddNextIntent(intent);
@@ -65,9 +72,6 @@ namespace Xalendar.Droid
                 var notificationManager = NotificationManagerCompat.From(Android.App.Application.Context);
                 notificationManager.Notify(notification.GetHashCode(), builder.Build());
             }
-
-
-
         }
 
         private Intent CreateIntent(int id)

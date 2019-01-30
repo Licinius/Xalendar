@@ -4,7 +4,7 @@
              x:Class="Xalendar.Views.SportPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="C'est parti pour le Sport ! "
+            <Label x:Name="titre" Text="C'est parti pour "
                 HorizontalOptions="CenterAndExpand"
                    FontSize="Medium" />
             <StackLayout VerticalOptions="CenterAndExpand">

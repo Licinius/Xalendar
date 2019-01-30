@@ -30,6 +30,12 @@ namespace Xalendar.ViewModels
                 var newItem = item as Event;
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
+
+                INotification notification = DependencyService.Get<INotification>();
+                if (notification != null)
+                {
+                    notification.Show(newItem.Id, newItem.Title, newItem.TypeEvt.ToString(), newItem.Date);
+                }
             });
         }
 
@@ -81,6 +87,17 @@ namespace Xalendar.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        internal async void Delete(Event model)
+        {
+            Items.Remove(model);
+            await DataStore.DeleteItemAsync(model.Id);
+            INotification notification = DependencyService.Get<INotification>();
+            if (notification != null)
+            {
+                notification.Cancel(model.Id);
             }
         }
     }

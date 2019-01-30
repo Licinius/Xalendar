@@ -24,7 +24,7 @@ namespace Xalendar.Droid
 
             CrossCurrentActivity.Current.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(true));
+            LoadApplication(new App(true,Intent.GetIntExtra("Id",-1)));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

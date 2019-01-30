@@ -62,13 +62,10 @@ namespace Xalendar.Views
         async void Save_Clicked(object sender, EventArgs e)
         {
             Item.Date = new DateTime(Date.Year, Date.Month, Date.Day, Time.Hours, Time.Minutes, Time.Seconds, Time.Milliseconds);
-            MessagingCenter.Send(this, "AddItem", Item);
             Item.TypeEvt = (TypeEvent) PickerEvent.SelectedItem;
-            INotification notification = DependencyService.Get<INotification>();
-            if(notification != null)
-            {
-                notification.Show(Item.Title, Item.TypeEvt + " [" + Item.Date.ToString("dd/MM/yyyy") + "]",Item.TypeEvt.ToString(),Item.Date);
-            }
+
+            MessagingCenter.Send(this, "AddItem", Item);
+            
              await Navigation.PopModalAsync();
         }
 

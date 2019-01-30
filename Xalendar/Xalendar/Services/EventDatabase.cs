@@ -47,12 +47,12 @@ namespace Xalendar.Services
             return await Database.UpdateAsync(Event);
         }
 
-        public async Task<int> DeleteItemAsync(string id)
+        public async Task<int> DeleteItemAsync(int id)
         {
-            return await Database.DeleteAsync(id);
+            return await Database.DeleteAsync<Event>(id);
         }
 
-        public async Task<Event> GetItemAsync(string id)
+        public async Task<Event> GetItemAsync( int id)
         {
             return await Database.GetAsync<Event>(id);
         }
@@ -85,5 +85,6 @@ namespace Xalendar.Services
         {
             return await Database.Table<Event>().ToListAsync();
         }
+
     }
 }

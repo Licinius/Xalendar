@@ -18,5 +18,7 @@ namespace Xalendar.Models
         public double Longitude { get; set; }
         public byte[] Photo { get; set; }
 
+        public int Pas { get; set; }
+
     }
 }

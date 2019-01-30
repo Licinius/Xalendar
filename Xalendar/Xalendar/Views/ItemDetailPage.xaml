@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xalendar.Views.ItemDetailPage"
              Title="{Binding Title}">
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="{Binding Item.Title, StringFormat='Title : {0}'}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Date, StringFormat='{}{0:dd/MM/yy HH:mm}'}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Latitude, StringFormat='Latitude : {0:F3}' }" FontSize="Medium"/>
-        <Label Text="{Binding Item.Longitude, StringFormat='Longitude : {0:F3}' }" FontSize="Medium"/>
-        <Label Text="{Binding Item.TypeEvt, StringFormat='Type : {0}'}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Description, StringFormat='Note: {0}'}" FontSize="Medium"/>
-        <Image x:Name="PhotoImage"/>
-    </StackLayout>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Item.Title, StringFormat='Title : {0}'}" FontSize="Medium"/>
+            <Label Text="{Binding Item.Date, StringFormat='{}{0:dd/MM/yy HH:mm}'}" FontSize="Medium"/>
+            <Label Text="{Binding Item.Latitude, StringFormat='Latitude : {0:F3}' }" FontSize="Medium"/>
+            <Label Text="{Binding Item.Longitude, StringFormat='Longitude : {0:F3}' }" FontSize="Medium"/>
+            <Label Text="{Binding Item.TypeEvt, StringFormat='Type : {0}'}" FontSize="Medium"/>
+            <Label Text="{Binding Item.Description, StringFormat='Note: {0}'}" FontSize="Medium"/>
+            <Label x:Name="Pas" FontSize="Medium"/>
+            <Image x:Name="PhotoImage"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

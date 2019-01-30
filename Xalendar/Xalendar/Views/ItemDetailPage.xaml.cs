@@ -20,6 +20,13 @@ namespace Xalendar.Views
 
             BindingContext = this.viewModel = viewModel;
             PhotoImage.Source = ImageSource.FromStream(() => { return new MemoryStream(viewModel.Item.Photo); });
+
+            if (viewModel.Item.Pas > 0)
+            {
+
+                Pas.Text = "Vous avez fait  " + viewModel.Item.Pas + " pas";
+
+            }
         }
 
         public ItemDetailPage()

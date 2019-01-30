@@ -9,9 +9,9 @@ namespace Xalendar.Services
     {
         Task<int> AddItemAsync(T Event);
         Task<int> UpdateItemAsync(T Event);
-        Task<int> DeleteItemAsync(string id);
+        Task<int> DeleteItemAsync(int id);
         Task<int> DeleteAll();
-        Task<T> GetItemAsync(string id);
+        Task<T> GetItemAsync(int  id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
         Task<IEnumerable<T>> SearchAsync(DateTime date,TypeEvent? type);
     }

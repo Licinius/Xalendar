@@ -58,5 +58,13 @@ namespace Xalendar.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
+        private void OnDelete(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            var model = (Event)item.CommandParameter;
+            viewModel.Delete(model);
+
+        }
     }
 }
